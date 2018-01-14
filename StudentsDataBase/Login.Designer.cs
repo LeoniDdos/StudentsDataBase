@@ -102,13 +102,14 @@
             this.buttonSignUp.TabIndex = 6;
             this.buttonSignUp.Text = "Регистрация";
             this.buttonSignUp.UseVisualStyleBackColor = true;
+            this.buttonSignUp.Visible = false;
             this.buttonSignUp.Click += new System.EventHandler(this.buttonSignUp_Click);
             // 
             // Login
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(326, 331);
+            this.ClientSize = new System.Drawing.Size(326, 279);
             this.Controls.Add(this.buttonSignUp);
             this.Controls.Add(this.buttonSignIn);
             this.Controls.Add(this.labelPassword);
