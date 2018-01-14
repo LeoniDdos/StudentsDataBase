@@ -29,7 +29,8 @@ namespace StudentsDataBase
         private void DataRefresh()
         {
             conn.Open();
-            SqlCommand sc = new SqlCommand("SELECT OtdelID FROM Otdels", conn);
+            SqlCommand sc = new SqlCommand("sp_cbOtdelenie", conn);
+            sc.CommandType = System.Data.CommandType.StoredProcedure;
             SqlDataReader reader;
 
             reader = sc.ExecuteReader();
@@ -41,8 +42,11 @@ namespace StudentsDataBase
             comboBoxGrpOtdelenie.DisplayMember = "OtdelID";
             comboBoxGrpOtdelenie.DataSource = dt;
 
+            comboBoxChooseOtd.ValueMember = "OtdelID";
+            comboBoxChooseOtd.DisplayMember = "OtdelID";
+            comboBoxChooseOtd.DataSource = dt;
 
-            sc = new SqlCommand("SELECT GroupID, Name FROM Groups", conn);
+            sc = new SqlCommand("sp_cbGroup", conn);
 
             reader = sc.ExecuteReader();
             dt = new DataTable();
@@ -53,27 +57,6 @@ namespace StudentsDataBase
             comboBoxStudGroup.ValueMember = "GroupID";
             comboBoxStudGroup.DisplayMember = "Name";
             comboBoxStudGroup.DataSource = dt;
-
-
-            sc = new SqlCommand("SELECT OtdelID FROM Otdels", conn);
-
-            reader = sc.ExecuteReader();
-            dt = new DataTable();
-            dt.Columns.Add("OtdelID", typeof(string));
-            dt.Load(reader);
-
-            comboBoxChooseOtd.ValueMember = "OtdelID";
-            comboBoxChooseOtd.DisplayMember = "OtdelID";
-            comboBoxChooseOtd.DataSource = dt;
-
-
-            sc = new SqlCommand("SELECT GroupID, Name FROM Groups", conn);
-
-            reader = sc.ExecuteReader();
-            dt = new DataTable();
-            dt.Columns.Add("GroupID", typeof(string));
-            dt.Columns.Add("Name", typeof(string));
-            dt.Load(reader);
 
             comboBoxChooseGrp.ValueMember = "GroupID";
             comboBoxChooseGrp.DisplayMember = "Name";

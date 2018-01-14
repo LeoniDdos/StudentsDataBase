@@ -14,7 +14,6 @@ namespace StudentsDataBase
 {
     public partial class Login : Form
     {
-
         int UserID;
         string LoginName;
         bool root = false;
@@ -22,35 +21,6 @@ namespace StudentsDataBase
         public Login()
         {
             InitializeComponent();
-        }
-
-        private static void InsertToTable()
-        {
-            SqlConnection conn = new SqlConnection(@"Server=LAPTOP-8BSFAANR\SQLEXPRESS;Database=Students;Trusted_Connection=Yes;");
-            conn.Open();
-
-            using (SqlCommand cmd = new SqlCommand("INSERT INTO Users" +
-                        "(Name,Password,Level) Values (@Name,@Password,@Level)", conn))
-            {
-                SqlParameter param = new SqlParameter();
-                param.ParameterName = "@Name"; param.Value = "admin"; param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
-                param = new SqlParameter();
-                param.ParameterName = "@Password"; param.Value = "admin"; param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
-                param = new SqlParameter();
-                param.ParameterName = "@Level"; param.Value = 1; param.SqlDbType = SqlDbType.Int; cmd.Parameters.Add(param);
-
-                Console.WriteLine("Вставляем запись");
-                try
-                {
-                    cmd.ExecuteNonQuery();
-                }
-                catch (SqlException se)
-                {
-                    Console.WriteLine("Ошибка подключения: {0}", se.Message);
-                    return;
-                }
-            }
-            conn.Close();
         }
 
         private static void CreateNewTable()
@@ -64,7 +34,7 @@ namespace StudentsDataBase
             string CreateStudents = "CREATE TABLE Students (StudentID int IDENTITY(1,1) PRIMARY KEY, Surname VarChar(30) not null, Name VarChar(30) not null, Patronymic VarChar(30), Birthday VarChar(30), GroupID int FOREIGN KEY REFERENCES Groups(GroupID))";
 
 
-            using (SqlCommand cmdCreateTable = new SqlCommand(CreateOtdels + CreateGroups + CreateUsers + CreateStudents, conn))
+            using (SqlCommand cmdCreateTable = new SqlCommand(CreateOtdels + CreateGroups + CreateStudents, conn))
             {
                 Console.WriteLine("Создаем таблицы");
                 try
@@ -103,7 +73,6 @@ namespace StudentsDataBase
                     Thread.Sleep(5000);
                     
                     CreateNewTable();
-                    InsertToTable();
                 }
             }
             finally

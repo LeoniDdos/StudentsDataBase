@@ -56,10 +56,8 @@ namespace StudentsDataBase
         {
             conn.Open();
 
-            var selectBooks = "SELECT StudentID as ID, CONCAT (Students.Surname, ' ', Left (Students.Name,1), '. ', Left (Students.Patronymic,1), '.') as ФИО, Groups.Name as Группа, Students.Birthday as Дата_рождения, Groups.Faculty as Факультет FROM Students INNER JOIN Groups ON Groups.GroupID = Students.GroupID";
-
             using (SqlDataAdapter dataAdapter = new SqlDataAdapter(
-            selectBooks, conn))
+            "sp_ShowStudents", conn))
             {
                 DataTable dt = new DataTable();
                 dataAdapter.Fill(dt);

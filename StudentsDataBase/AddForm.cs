@@ -27,7 +27,9 @@ namespace StudentsDataBase
         private void DataRefresh()
         {
             conn.Open();
-            SqlCommand sc = new SqlCommand("SELECT OtdelID FROM Otdels", conn);
+            SqlCommand sc = new SqlCommand("sp_cbOtdelenie", conn);
+            sc.CommandType = System.Data.CommandType.StoredProcedure;
+
             SqlDataReader reader;
 
             reader = sc.ExecuteReader();
@@ -40,8 +42,8 @@ namespace StudentsDataBase
             comboBoxGrpOtdelenie.DataSource = dt;
 
 
-            sc = new SqlCommand("SELECT GroupID, Name FROM Groups", conn);
-            
+            sc = new SqlCommand("sp_cbGroup", conn);
+
             reader = sc.ExecuteReader();
             dt = new DataTable();
             dt.Columns.Add("GroupID", typeof(string));
