@@ -119,46 +119,23 @@ namespace StudentsDataBase
 
         private void buttonSignIn_Click(object sender, EventArgs e)
         {
-            //SqlConnection conn = new SqlConnection(@"Server=LAPTOP-8BSFAANR\SQLEXPRESS;Database=Students;Trusted_Connection=Yes;");
             if (textBoxLogin.Text.ToString() != "" && textBoxPassword.Text.ToString() != "")
             {
-                SqlConnection conn = new SqlConnection(@"Server=LAPTOP-8BSFAANR\SQLEXPRESS; Database=Students; integrated security = True; User ID = " + textBoxLogin.Text.ToString() + "; Password = " + textBoxPassword.ToString() + ";");
+                SqlConnection conn = new SqlConnection(@"Persist Security Info=False;User ID=" + textBoxLogin.Text + ";Password=" + textBoxPassword.Text + ";Initial Catalog=Students;Server=LAPTOP-8BSFAANR\\SQLEXPRESS");
 
-                /*string Name = textBoxLogin.Text.ToString();
-                string pass = "";
-                string Level = "";
-                string getP = "SELECT Password, Level, UserID FROM Users WHERE Name = @Name";
-
-                SqlCommand commandBrands = new SqlCommand(getP, conn);
-
-                commandBrands.Parameters.AddWithValue("@Name", Name);
-
-                using (SqlDataReader reader = commandBrands.ExecuteReader())
+                try
                 {
-                    while (reader.Read())
-                    {
-                        pass = reader["Password"].ToString();
-                        Level = reader["Level"].ToString();
-                        UserID = Convert.ToInt32(reader["UserID"]);
-                    }
-                }*/
-                /*if (pass == textBoxPassword.Text.ToString())
-                {
-                    LoginName = textBoxLogin.Text;
-
-                    this.Size = new System.Drawing.Size(1105, 469);
-                    this.MaximumSize = new System.Drawing.Size(1105, 469);
-                    this.MinimumSize = new System.Drawing.Size(1105, 469);
-
-                    if (Level == "0") root = false;
-                    else root = true;
-                    */
-                Hide();
-                MainForm mainForm = new MainForm(true, 1, conn);
+                    conn.Open();
+                    conn.Close();
+                    Hide();
+                    MainForm mainForm = new MainForm(true, 1, conn);
                     mainForm.ShowDialog();
-                this.Close();
-                //}
-                //else MessageBox.Show("Что-то введено не так!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+                catch (SqlException)
+                {
+                    MessageBox.Show("Что-то введено не так!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             else MessageBox.Show("Не все поля заполнены!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
@@ -180,8 +157,6 @@ namespace StudentsDataBase
                 try
                 {
                     cmd.ExecuteNonQuery();
-
-                    //LoginName = textBoxLogin.Text;
                 }
                 catch (Exception se)
                 {
@@ -189,60 +164,7 @@ namespace StudentsDataBase
                     return;
                 }
             }
-
             conn.Close();
-            /*bool flag = false;
-
-            conn.Open();
-            if (textBoxLogin.Text.ToString() != "" && textBoxPassword.Text.ToString() != "")
-                using (SqlCommand cmd = new SqlCommand("INSERT INTO Users" +
-                    "(Name,Password,Level) Values (@Name,@Password,@Level)", conn))
-                {
-                    SqlParameter param = new SqlParameter();
-                    param.ParameterName = "@Name"; param.Value = textBoxLogin.Text.ToString(); param.SqlDbType = SqlDbType.Text; cmd.Parameters.Add(param);
-                    param = new SqlParameter();
-                    param.ParameterName = "@Password"; param.Value = textBoxPassword.Text.ToString(); param.SqlDbType = SqlDbType.Text; cmd.Parameters.Add(param);
-                    param = new SqlParameter();
-                    param.ParameterName = "@Level"; param.Value = 0; param.SqlDbType = SqlDbType.Int; cmd.Parameters.Add(param);
-
-                    Console.WriteLine("Вставляем запись");
-                    try
-                    {
-                        cmd.ExecuteNonQuery();
-                        flag = true;
-
-                        LoginName = textBoxLogin.Text;
-                    }
-                    catch (Exception se)
-                    {
-                        Console.WriteLine("Ошибка подключения: {0}", se.Message);
-                        return;
-                    }
-                }
-            else MessageBox.Show("Не все поля заполнены!", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            if (flag == true)
-                using (SqlCommand sqlout = new SqlCommand("SELECT UserID FROM Users WHERE Name = @Name", conn))
-                {
-                    SqlParameter param2 = new SqlParameter();
-                    param2.ParameterName = "@Name"; param2.Value = textBoxLogin.Text.ToString(); param2.SqlDbType = SqlDbType.VarChar; sqlout.Parameters.Add(param2);
-
-                    try
-                    {
-                        sqlout.ExecuteNonQuery();
-                    }
-                    catch (Exception se)
-                    {
-                        Console.WriteLine("Ошибка подключения: {0}", se.Message);
-                        return;
-                    }
-                    UserID = (int)sqlout.ExecuteScalar();
-
-                    Hide();
-                    MainForm mainForm = new MainForm(root, 1);
-                    mainForm.ShowDialog();
-                    this.Close();
-                }*/
         }
     }
 }

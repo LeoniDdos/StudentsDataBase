@@ -396,7 +396,7 @@
             this.ClientSize = new System.Drawing.Size(403, 366);
             this.Controls.Add(this.tabControlAdd);
             this.Name = "AddForm";
-            this.Text = "AddForm";
+            this.Text = "Добавление";
             this.tabPageAddOtd.ResumeLayout(false);
             this.tabPageAddOtd.PerformLayout();
             this.tabPageAddGrp.ResumeLayout(false);

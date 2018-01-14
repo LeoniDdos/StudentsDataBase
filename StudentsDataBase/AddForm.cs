@@ -61,9 +61,9 @@ namespace StudentsDataBase
             if (textBoxStudSurname.Text.ToString() != "" && textBoxStudName.Text.ToString() != "" && textBoxStudPatronymic.Text.ToString() != "" && textBoxStudBirthday.Text.ToString() != "")
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("Insert into Students" +
-                            "(Surname, Name, Patronymic, Birthday, GroupID) Values (@Surname, @Name, @Patronymic, @Birthday, @GroupID)", conn))
+                using (SqlCommand cmd = new SqlCommand("sp_AddStudent", conn))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     SqlParameter param = new SqlParameter();
                     param.ParameterName = "@Surname"; param.Value = textBoxStudSurname.Text.ToString(); param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
                     param = new SqlParameter();
@@ -104,17 +104,15 @@ namespace StudentsDataBase
             if (textBoxGrpName.Text.ToString() != "" && textBoxGrpCurator.Text.ToString() != "" && textBoxGrpFaculty.Text.ToString() != "")
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("Insert into Groups" +
-                            "(Name, Curator, Faculty, StudCount, OtdelID) Values (@Name, @Curator, @Faculty, @StudCount, @OtdelID)", conn))
+                using (SqlCommand cmd = new SqlCommand("sp_AddGroup", conn))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     SqlParameter param = new SqlParameter();
                     param.ParameterName = "@Name"; param.Value = textBoxGrpName.Text.ToString(); param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
                     param = new SqlParameter();
                     param.ParameterName = "@Curator"; param.Value = textBoxGrpCurator.Text.ToString(); param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
                     param = new SqlParameter();
                     param.ParameterName = "@Faculty"; param.Value = textBoxGrpFaculty.Text.ToString(); param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
-                    param = new SqlParameter();
-                    param.ParameterName = "@StudCount"; param.Value = 0; param.SqlDbType = SqlDbType.Int; cmd.Parameters.Add(param);
                     param = new SqlParameter();
                     param.ParameterName = "@OtdelID"; param.Value = comboBoxGrpOtdelenie.SelectedIndex + 1; param.SqlDbType = SqlDbType.Int; cmd.Parameters.Add(param);
                    
@@ -147,9 +145,9 @@ namespace StudentsDataBase
             if (textBoxOtdManager.Text.ToString() != "" && textBoxOtdTelephone.Text.ToString() != "")
             {
                 conn.Open();
-                using (SqlCommand cmd = new SqlCommand("Insert into Otdels" +
-                            "(Manager, Telephone) Values (@Manager, @Telephone)", conn))
+                using (SqlCommand cmd = new SqlCommand("sp_AddOtdelenie", conn))
                 {
+                    cmd.CommandType = System.Data.CommandType.StoredProcedure;
                     SqlParameter param = new SqlParameter();
                     param.ParameterName = "@Manager"; param.Value = textBoxOtdManager.Text.ToString(); param.SqlDbType = SqlDbType.VarChar; cmd.Parameters.Add(param);
                     param = new SqlParameter();

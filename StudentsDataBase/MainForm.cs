@@ -86,5 +86,25 @@ namespace StudentsDataBase
         {
             RefreshData();
         }
+
+        private void buttonEdit_Click(object sender, EventArgs e)
+        {
+            try
+            {
+                EditForm editForm = new EditForm(dataGridViewStudents.CurrentCell.RowIndex + 1, conn);
+                editForm.ShowDialog();
+            }
+            catch (Exception se)
+            {
+                Console.WriteLine("Ошибка: {0}", se.Message);
+                MessageBox.Show("Выберите строку", "Ошибка", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+        }
+
+        private void buttonDelete_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

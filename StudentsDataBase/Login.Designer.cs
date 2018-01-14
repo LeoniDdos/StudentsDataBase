@@ -118,7 +118,7 @@
             this.Controls.Add(this.labelTitleAuth);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Name = "Login";
-            this.Text = "Login";
+            this.Text = "Авторизация";
             this.Load += new System.EventHandler(this.Login_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
