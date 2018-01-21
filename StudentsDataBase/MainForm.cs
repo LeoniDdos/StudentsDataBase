@@ -110,5 +110,11 @@ namespace StudentsDataBase
             Users usersForm = new Users(conn);
             usersForm.ShowDialog();
         }
+
+        private void buttonLogs_Click(object sender, EventArgs e)
+        {
+            Logs logsForm = new Logs(conn);
+            logsForm.ShowDialog();
+        }
     }
 }

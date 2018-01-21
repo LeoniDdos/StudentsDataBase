@@ -34,6 +34,7 @@
             this.buttonRefresh = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUsers = new System.Windows.Forms.Button();
+            this.buttonLogs = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -94,7 +95,7 @@
             // buttonUsers
             // 
             this.buttonUsers.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.buttonUsers.Location = new System.Drawing.Point(205, 334);
+            this.buttonUsers.Location = new System.Drawing.Point(674, 43);
             this.buttonUsers.Name = "buttonUsers";
             this.buttonUsers.Size = new System.Drawing.Size(106, 41);
             this.buttonUsers.TabIndex = 5;
@@ -102,11 +103,23 @@
             this.buttonUsers.UseVisualStyleBackColor = true;
             this.buttonUsers.Click += new System.EventHandler(this.buttonUsers_Click);
             // 
+            // buttonLogs
+            // 
+            this.buttonLogs.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonLogs.Location = new System.Drawing.Point(674, 100);
+            this.buttonLogs.Name = "buttonLogs";
+            this.buttonLogs.Size = new System.Drawing.Size(106, 41);
+            this.buttonLogs.TabIndex = 6;
+            this.buttonLogs.Text = "Logs";
+            this.buttonLogs.UseVisualStyleBackColor = true;
+            this.buttonLogs.Click += new System.EventHandler(this.buttonLogs_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(681, 403);
+            this.ClientSize = new System.Drawing.Size(802, 403);
+            this.Controls.Add(this.buttonLogs);
             this.Controls.Add(this.buttonUsers);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonRefresh);
@@ -129,6 +142,7 @@
         private System.Windows.Forms.Button buttonRefresh;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonUsers;
+        private System.Windows.Forms.Button buttonLogs;
     }
 }
 
