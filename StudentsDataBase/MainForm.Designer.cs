@@ -35,6 +35,7 @@
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonUsers = new System.Windows.Forms.Button();
             this.buttonLogs = new System.Windows.Forms.Button();
+            this.buttonToXML = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridViewStudents)).BeginInit();
             this.SuspendLayout();
             // 
@@ -114,11 +115,23 @@
             this.buttonLogs.UseVisualStyleBackColor = true;
             this.buttonLogs.Click += new System.EventHandler(this.buttonLogs_Click);
             // 
+            // buttonToXML
+            // 
+            this.buttonToXML.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.buttonToXML.Location = new System.Drawing.Point(674, 156);
+            this.buttonToXML.Name = "buttonToXML";
+            this.buttonToXML.Size = new System.Drawing.Size(106, 41);
+            this.buttonToXML.TabIndex = 7;
+            this.buttonToXML.Text = "To XML";
+            this.buttonToXML.UseVisualStyleBackColor = true;
+            this.buttonToXML.Click += new System.EventHandler(this.buttonToXML_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(802, 403);
+            this.Controls.Add(this.buttonToXML);
             this.Controls.Add(this.buttonLogs);
             this.Controls.Add(this.buttonUsers);
             this.Controls.Add(this.buttonDelete);
@@ -143,6 +156,7 @@
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonUsers;
         private System.Windows.Forms.Button buttonLogs;
+        private System.Windows.Forms.Button buttonToXML;
     }
 }
 

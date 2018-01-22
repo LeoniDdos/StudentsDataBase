@@ -38,14 +38,14 @@
             this.dataGridViewLogs.Location = new System.Drawing.Point(12, 12);
             this.dataGridViewLogs.Name = "dataGridViewLogs";
             this.dataGridViewLogs.RowTemplate.Height = 24;
-            this.dataGridViewLogs.Size = new System.Drawing.Size(761, 345);
+            this.dataGridViewLogs.Size = new System.Drawing.Size(868, 345);
             this.dataGridViewLogs.TabIndex = 0;
             // 
             // Logs
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(785, 372);
+            this.ClientSize = new System.Drawing.Size(892, 372);
             this.Controls.Add(this.dataGridViewLogs);
             this.Name = "Logs";
             this.Text = "Логи";

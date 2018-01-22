@@ -14,8 +14,6 @@ namespace StudentsDataBase
 {
     public partial class Login : Form
     {
-        int UserID;
-        string LoginName;
         bool root = false;
 
         public Login()
@@ -30,9 +28,9 @@ namespace StudentsDataBase
 
             string CreateOtdels = "CREATE TABLE Otdels (OtdelID int IDENTITY(1,1) PRIMARY KEY, Manager VarChar(30) not null, Telephone VarChar(30) not null); ";
             string CreateGroups = "CREATE TABLE Groups (GroupID int IDENTITY(1,1) PRIMARY KEY, Name VarChar(30) not null, Faculty VarChar(30) not null, Curator VarChar(30) not null, StudCount int not null, OtdelID int FOREIGN KEY REFERENCES Otdels(OtdelID)); ";
-            //string CreateUsers = "CREATE TABLE Users (UserID int IDENTITY(1,1) PRIMARY KEY, Name VarChar(30) not null, Password VarChar(30) not null, Level int not null); ";
             string CreateStudents = "CREATE TABLE Students (StudentID int IDENTITY(1,1) PRIMARY KEY, Surname VarChar(30) not null, Name VarChar(30) not null, Patronymic VarChar(30), Birthday VarChar(30), GroupID int FOREIGN KEY REFERENCES Groups(GroupID))";
-            string CreateLogs = "CREATE TABLE Logs (LogID int IDENTITY(1,1) PRIMARY KEY, ActionName VarChar(30) not null, TableName VarChar(30) not null, UserName VarChar(30) not null, ActDate DateTime not null)";
+            string CreateLogs = "CREATE TABLE Logs (LogID int IDENTITY(1,1) PRIMARY KEY, UserName VarChar(30) not null, ActionName VarChar(30) not null, TableName VarChar(30) not null, ObjectID int not null, NewData VarChar(30) not null, ActDate DateTime not null)";
+            string CreateComLogs = "CREATE TABLE CompessionLogs (LogID int IDENTITY(1,1) PRIMARY KEY, UserName VarChar(30) not null, ActionName VarChar(30) not null, TableName VarChar(30) not null, IDs VarChar(MAX) not null, LogData VarChar(MAX))";
 
 
             using (SqlCommand cmdCreateTable = new SqlCommand(CreateOtdels + CreateGroups + CreateStudents + CreateLogs, conn))

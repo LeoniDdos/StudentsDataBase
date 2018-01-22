@@ -116,5 +116,31 @@ namespace StudentsDataBase
             Logs logsForm = new Logs(conn);
             logsForm.ShowDialog();
         }
+
+        private void buttonToXML_Click(object sender, EventArgs e)
+        {
+            conn.Open();
+
+            string studentsSQL = @"SELECT * FROM Students";
+            string groupsSQL = "SELECT * FROM Groups";
+            string otdelsSQL = "SELECT * FROM Otdels";
+            
+            DataSet dataSet = new DataSet();
+
+            SqlDataAdapter adapter = new SqlDataAdapter(studentsSQL, conn);
+            adapter.Fill(dataSet, "Students");
+            adapter.SelectCommand.CommandText = groupsSQL;
+            adapter.Fill(dataSet, "Groups");
+            adapter.SelectCommand.CommandText = otdelsSQL;
+            adapter.Fill(dataSet, "Otdels");
+
+            dataSet.Tables[0].TableName = "Students";
+            dataSet.Tables[1].TableName = "Groups";
+            dataSet.Tables[2].TableName = "Otdels";
+
+            dataSet.WriteXml(@"C:\Users\Leonid\Desktop\db.xml");
+
+            conn.Close();
+        }
     }
 }
